@@ -1,0 +1,37 @@
+{
+  "name": "clip3d",
+  "version": "0.0.1",
+  "description": "A 3d render use css: clip-path",
+  "keywords": [
+    "3d",
+    "css",
+    "clip-path"
+  ],
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:leeluolee/clip3d"
+  },
+  "scripts": {
+    "test": "gulp travis --phantomjs"
+  },
+  "author": {
+    "name": "leeluolee",
+    "email": "oe.zheng@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/leeluolee/clip3d/issues"
+  },
+  "homepage": "https://github.com/leeluolee/clip3d",
+  "devDependencies": {
+    "gulp-jshint": "~1.5.3",
+    "gulp-shell": "^0.2.4",
+    "gulp-webpack": "^0.3.0",
+    "gulp-uglify": "~0.2.1",
+    "gulp-util": "~2.2.14",
+    "through2": "~0.4.1",
+    "expect.js": "^0.3.1",
+    "gulp": "^3.8.10"
+  }
+}
