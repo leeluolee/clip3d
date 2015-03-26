@@ -1,11 +1,12 @@
 {
   "name": "clip3d",
   "version": "0.0.1",
-  "description": "A 3d render use css: clip-path",
+  "description": "3d model rendering with css:clip-path",
   "keywords": [
     "3d",
     "css",
-    "clip-path"
+    "clip-path",
+    "render"
   ],
   "main": "src/index.js",
   "repository": {
