@@ -83,11 +83,13 @@ _.extend(Render.prototype, {
         vec3.dot(vec3.normalize(vertical), lpos),0
         ): 1;
       // console.log(indensity, vertical, lpos, ntransform)
-      var clip = face.map(this.percentify).join(",")
+      var clip = "polygon(" + face.map(this.percentify).join(",") + ")";
       // console.log(clip, JSON.stringify(face))
 
       style.display = "";
-      style.webkitClipPath = "polygon(" + clip + ")";
+
+      style.webkitClipPath = clip;
+      style.clipPath = clip;
       // console.log(indensity, ecolor, this.light.diffuse)
       var diffuse = color.mix(this.light.color, ecolor, indensity);
       var ambient = color.mix([50,50,50, 1], ecolor, 1-indensity);
@@ -115,145 +117,5 @@ _.extend(Render.prototype, {
   }
 })
 
-var render = new Render({
-  parent: document.getElementById("app"),
-  camera: new Camera({
-    eye: [4,4, -10]
-  }),
-  // simple point-lighting
-  light: new Light({
-    position: [ 0, 0, -1 ],
-    color: [255, 255, 255,1]
-  }),
-  // http://learningwebgl.com/blog/?p=370 
-  // entity form learning webgl
-  entities: [
-    {
-      vertices: [ 
-        0,  1,  0,
-        -1, -1, 1,
-        1, -1,  1,
 
-        0,  1,  0,
-        1, -1,  1,
-        1, -1, -1,
-
-        0,  1,  0,
-        1, -1, -1,
-        -1, -1, -1,
-
-        0,  1,  0,
-        -1, -1, -1,
-        -1, -1,  1,
-
-        // warning the squence
-        1, -1,  1,
-        -1, -1, 1,
-        -1, -1, -1,
-
-        1, -1, -1,
-        1, -1,  1,
-        -1, -1, -1,
-
-      ],
-      colors: [
-      ]
-    },
-    {
-      vertices: [ 
-  // Front face
-      -1.0, -1.0,  1.0,
-       1.0, -1.0,  1.0,
-       1.0,  1.0,  1.0,
-      -1.0,  1.0,  1.0,
-
-      // Back face
-      -1.0, -1.0, -1.0,
-      -1.0,  1.0, -1.0,
-       1.0,  1.0, -1.0,
-       1.0, -1.0, -1.0,
-
-      // Top face
-      -1.0,  1.0, -1.0,
-      -1.0,  1.0,  1.0,
-       1.0,  1.0,  1.0,
-       1.0,  1.0, -1.0,
-
-      // Bottom face
-      -1.0, -1.0, -1.0,
-       1.0, -1.0, -1.0,
-       1.0, -1.0,  1.0,
-      -1.0, -1.0,  1.0,
-
-      // Right face
-       1.0, -1.0, -1.0,
-       1.0,  1.0, -1.0,
-       1.0,  1.0,  1.0,
-       1.0, -1.0,  1.0,
-
-      // Left face
-      -1.0, -1.0, -1.0,
-      -1.0, -1.0,  1.0,
-      -1.0,  1.0,  1.0,
-      -1.0,  1.0, -1.0
-      ],
-      indices : [
-        0, 1, 2,      0, 2, 3,    // Front face
-        4, 5, 6,      4, 6, 7,    // Back face
-        8, 9, 10,     8, 10, 11,  // Top face
-        12, 13, 14,   12, 14, 15, // Bottom face
-        16, 17, 18,   16, 18, 19, // Right face
-        20, 21, 22,   20, 22, 23  // Left face
-      ],
-      itemSize: 3,
-      // for simplify. one face only have one color
-      colors: [
-        [255, 0, 0, 1],
-        [255, 0, 0, 1],
-        [255, 255, 0, 1],
-        [255, 255, 0, 1],
-        [0, 255, 0, 1],
-        [0, 255, 0, 1],
-        [255, 120 , 255, 1],
-        [255, 120 , 255, 1],
-        [120, 255, 0, 1],
-        [120, 255, 0, 1],
-        [0, 255, 120, 1],
-        [0, 255, 120, 1]
-      ],
-      matrix: mat4.createRotate([0,0,1], 30)
-    }
-  ]
-})
-
-var i = 0;
-
-window.camera = render.camera;
-
-// render.entities.shift();
-
-var position = render.light.position.slice();
-
-function run(){
-  i = i + .8;
-  // vec3.rotateY(render.camera.eye, 1);
-  // render.camera.update();
-  render.entities[0].matrix =  mat4.rotate(
-      mat4.translate(
-       mat4.createScale(.2),
-       4,0,0), 
-  [1,1,0], i*3)
-
-
-  // render.light.position = vec3.rotateY(position,  i, []);
-  // console.log(render.light.position, i, position)
-
-  render.entities[1].matrix =  mat4.translate(mat4.createRotate([1,0,1], i*2), 2,2,0)
-  render.render();
-  // setTimeout(run, 1000)
-  _.requestFrame(run)
-}
-
-run();
-
-window.render = render;
+module.exports = Render;

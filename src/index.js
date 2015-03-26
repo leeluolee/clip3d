@@ -6,6 +6,8 @@ module.exports= {
   vec3: math.vec3,
   Entity: require("./entity"),
   Render: require("./render"),
+  Camera: require("./camera"),
+  Light: require("./light"),
   util: require("./util"),
   color: require("./color")
 }
