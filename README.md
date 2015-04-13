@@ -8,6 +8,8 @@ __SnapShot.gif__
 
 ![snapshot](https://raw.githubusercontent.com/leeluolee/clip3d/master/assets/snapshot.gif)
 
+__threejs head__
+![snapshot2](http://ww4.sinaimg.cn/large/6252205cgw1eqmyg50fsjg208e0a44mf.gif)
 
 ## Introduction
 
